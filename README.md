@@ -139,6 +139,7 @@ safe-agents/
 
 - [Functional & Technical Specification](SPECS.md)
 - [API Documentation](docs/API.md)
+- [Architecture](docs/ARCHITECTURE.md)
 - [Development Guide](docs/DEVELOPMENT.md)
 - [Testing Guide](docs/TESTING.md)
 
