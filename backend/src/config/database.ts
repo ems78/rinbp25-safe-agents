@@ -8,7 +8,15 @@ declare global {
 
 export async function connectMongoDB(): Promise<void> {
   try {
-    await mongoose.connect(process.env.MONGODB_URI as string);
+    const options = {
+      auth: {
+        username: process.env.MONGO_USER,
+        password: process.env.MONGO_PASSWORD
+      },
+      authSource: 'admin'
+    };
+    
+    await mongoose.connect(process.env.MONGODB_URI as string, options);
     logger.info('MongoDB connected successfully');
   } catch (error) {
     logger.error('MongoDB connection error:', error);

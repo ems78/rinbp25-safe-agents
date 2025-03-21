@@ -5,6 +5,7 @@ import 'dotenv/config';
 
 import { connectMongoDB, connectNeo4j } from './config/database.js';
 import { logger } from './utils/logger.js';
+import attackPatternRoutes from './routes/attackPatternRoutes.js';
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -18,6 +19,9 @@ app.use(express.json());
 app.get('/health', (_req: Request, res: Response) => {
   res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
+
+// API Routes
+app.use('/api/v1/attack-patterns', attackPatternRoutes);
 
 // Global error handler
 const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
