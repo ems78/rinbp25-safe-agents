@@ -41,8 +41,8 @@ services:
       - NODE_ENV=development
       - MONGODB_URI=mongodb://mongodb:27017/myapp
       - NEO4J_URI=neo4j://neo4j:7687
-      - NEO4J_USER=neo4j
-      - NEO4J_PASSWORD=rinbp2025
+      - NEO4J_USER=${NEO4J_USER}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
     depends_on:
       mongodb:
         condition: service_healthy
@@ -65,8 +65,8 @@ services:
     volumes:
       - mongodb_data:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
     networks:
       - backend-net
     healthcheck:
@@ -85,7 +85,7 @@ services:
       - neo4j_data:/data
       - neo4j_logs:/logs
     environment:
-      - NEO4J_AUTH=neo4j/rinbp2025
+      - NEO4J_AUTH=${NEO4J_USER}/${NEO4J_PASSWORD}
       - NEO4J_apoc_export_file_enabled=true
       - NEO4J_apoc_import_file_enabled=true
       - NEO4J_apoc_import_file_use__neo4j__config=true
