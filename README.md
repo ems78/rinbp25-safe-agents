@@ -24,8 +24,9 @@ SafeAgents is a platform designed for security testing of AI agents, with a focu
 ## Tech Stack
 
 ### Backend
-- Node.js with Express
-- Python for analysis components
+- Node.js with Express and TypeScript
+- MongoDB for document storage
+- Neo4j for graph database
 
 ### Frontend
 - React with TypeScript
@@ -47,7 +48,6 @@ SafeAgents is a platform designed for security testing of AI agents, with a focu
 ## Prerequisites
 
 - Node.js (latest LTS version)
-- Python 3.8+
 - Docker
 - MongoDB
 - Neo4j
@@ -61,53 +61,34 @@ git clone https://github.com/yourusername/safe-agents.git
 cd safe-agents
 ```
 
-2. Install backend dependencies:
-```bash
-# Python dependencies
-python -m venv venv
-source venv/bin/activate  # or `venv\Scripts\activate` on Windows
-pip install -r requirements.txt
-
-# Node.js dependencies
-cd backend
-npm install
-```
-
-3. Install frontend dependencies:
-```bash
-cd frontend
-npm install
-```
-
-4. Set up environment variables:
+2. Set up environment variables:
 ```bash
 cp .env.example .env
 # Edit .env with your configuration
 ```
 
-5. Start the databases:
+3. Start all services (including Python analysis service):
 ```bash
-docker-compose up -d mongodb neo4j
+docker compose up
 ```
 
 ## Development
 
 1. Start the backend services:
 ```bash
-# Start Node.js server
 cd backend
+npm install
 npm run dev
-
-# Start Python analysis service
-cd analysis
-python service.py
 ```
 
 2. Start the frontend development server:
 ```bash
 cd frontend
+npm install
 npm run dev
 ```
+
+Note: The Python analysis service runs in a Docker container and is started automatically with `docker compose up`.
 
 ## Testing
 
@@ -126,13 +107,16 @@ npm test
 
 ```
 safe-agents/
-├── backend/           # Node.js Express backend
-├── analysis/          # Python analysis services
-├── frontend/          # React frontend
-├── docker/            # Docker configurations
-├── daytona/           # Daytona environment configs
-├── docs/              # Documentation
-└── test/              # Integration tests
+├── backend/           # Node.js Express backend with TypeScript
+│   ├── src/          # Source code
+│   ├── dist/         # Compiled JavaScript
+│   └── tests/        # Test files
+├── frontend/         # React frontend with TypeScript
+├── analysis/         # Python analysis services
+│   ├── service.py    # Main analysis service
+│   └── utils/        # Analysis utilities
+├── docs/            # Documentation
+└── docker/          # Docker configurations
 ```
 
 ## Documentation
@@ -150,4 +134,3 @@ This is a university project developed as part of coursework covering NoSQL data
 ## License
 
 [MIT License](LICENSE)
-
