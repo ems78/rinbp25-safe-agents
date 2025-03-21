@@ -242,7 +242,7 @@ The system will utilize two NoSQL database technologies:
 
 ### 5.3 Technology Stack
 
-- **Backend**: Node.js with Express, Python for analysis components
+- **Backend**: Node.js with Express and TypeScript
 - **Frontend**: React with TypeScript
 - **Databases**: MongoDB, Neo4j
 - **Graph Analysis**: NetworkX, Neo4j Graph Algorithms
