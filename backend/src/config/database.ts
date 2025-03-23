@@ -13,7 +13,12 @@ export async function connectMongoDB(): Promise<void> {
         username: process.env.MONGO_USER,
         password: process.env.MONGO_PASSWORD
       },
-      authSource: 'admin'
+      authSource: 'admin',
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+      connectTimeoutMS: 10000,
+      maxPoolSize: 10,
+      minPoolSize: 1
     };
     
     await mongoose.connect(process.env.MONGODB_URI as string, options);
