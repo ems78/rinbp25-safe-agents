@@ -72,3 +72,24 @@ attack-patterns/
 *.csr
 *.cert
 
+# Cursor files
+.cursorrules
+.cursor/
+.cursor.json
+.cursor/tmp/
+.cursor-tempfiles/
+.cursor-cache/
+scripts/doc-impact-check.js
+docs/CURSOR_RULES.md
+
+# Auto-generated documentation reports
+scripts/doc-reports/
+documentation-coverage/
+
+# Local Cursor settings that shouldn't be shared
+.cursor/user-settings.json
+
+# Generated documentation validation reports
+api-doc-validation/
+env-var-validation/
+schema-doc-validation/
