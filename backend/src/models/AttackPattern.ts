@@ -39,7 +39,7 @@ const attackPatternSchema = new Schema<IAttackPattern>({
     required: true,
     enum: ['Low', 'Medium', 'High', 'Critical']
   },
-  promptTemplate: { type: String, required: true },
+  promptTemplate: { type: String, required: false },
   variants: [{ type: String }],
   detectionSignals: [{ type: String }],
   prerequisites: [{ type: String }],
@@ -51,12 +51,13 @@ const attackPatternSchema = new Schema<IAttackPattern>({
     successRate: { type: Number },
     complexity: {
       type: String,
-      enum: ['Simple', 'Moderate', 'Complex']
+      enum: ['Simple', 'Moderate', 'Complex'],
+      default: 'Moderate'
     },
-    executionTime: { type: Number },
+    executionTime: { type: Number, default: 0 },
     resourceRequirements: {
-      memory: { type: String },
-      cpu: { type: String }
+      memory: { type: String, default: '1GB' },
+      cpu: { type: String, default: '1' }
     }
   }
 }, {
