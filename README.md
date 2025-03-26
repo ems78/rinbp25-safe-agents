@@ -47,8 +47,8 @@ SafeAgents is a platform designed for security testing of AI agents, with a focu
 
 ## Prerequisites
 
-- Node.js (latest LTS version)
-- Docker
+- Node.js (v20 recommended)
+- Docker and Docker Compose
 - MongoDB
 - Neo4j
 - Daytona CLI
@@ -67,32 +67,50 @@ cp .env.example .env
 # Edit .env with your configuration
 ```
 
-3. Start all services (including Python analysis service):
+3. Start all services:
 ```bash
 docker compose up
 ```
 
+This will start:
+- Frontend on port 3000
+- Backend on port 4000
+- MongoDB on port 27017
+- Neo4j on ports 7474 (HTTP) and 7687 (Bolt)
+
 ## Development
 
-1. Start the backend services:
+### Backend
+
 ```bash
 cd backend
 npm install
 npm run dev
 ```
 
-2. Start the frontend development server:
+The backend server will run on http://localhost:4000
+
+### Frontend
+
 ```bash
 cd frontend
 npm install
-npm run dev
+npm start
 ```
 
-Note: The Python analysis service runs in a Docker container and is started automatically with `docker compose up`.
+The frontend dev server will run on http://localhost:3000
+
+### Data Import
+
+To import MITRE ATT&CK patterns and other initial data:
+
+```bash
+cd backend
+npm run import-data
+```
 
 ## Testing
 
-Basic testing can be run using:
 ```bash
 # Run backend tests
 cd backend
@@ -116,16 +134,16 @@ safe-agents/
 │   ├── service.py    # Main analysis service
 │   └── utils/        # Analysis utilities
 ├── docs/            # Documentation
-└── docker/          # Docker configurations
+└── docker-compose.yml # Docker configuration
 ```
 
 ## Documentation
 
 - [Functional & Technical Specification](SPECS.md)
-- [API Documentation](docs/API.md)
+- [API Documentation](docs/API.md) (planned)
 - [Architecture](docs/ARCHITECTURE.md)
-- [Development Guide](docs/DEVELOPMENT.md)
-- [Testing Guide](docs/TESTING.md)
+- [Development Guide](docs/DEVELOPMENT.md) (planned)
+- [Testing Guide](docs/TESTING.md) (planned)
 
 ## Contributing
 
